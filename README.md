@@ -27,7 +27,7 @@
 
 7. Create the Header and Footer components with basic code
 
-8. Create the following pages with basic code: Home, SignUp, SignIn, AptIndex, AptProtectedIndex, AptShow, AptNew, and NotFound
+8. Create the following pages with basic code: Home, SignUp, SignIn, AptIndex, AptProtectedIndex, AptShow, AptNew, AptEdit, and NotFound
 
 9. Add React Router dependencies and configurations
 
