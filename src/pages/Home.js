@@ -1,10 +1,18 @@
 import React from "react";
-
+import homeBrand from "../assets/home.png"
 const Home = () => {
 
   return(
     <>
-      <h1>Apartment App</h1>
+      <img
+        className="center-image"
+        alt="logo"
+        src={homeBrand}
+        style={{
+          height: 400,
+          width: 400
+        }}
+      />
     </>
   )
 }
