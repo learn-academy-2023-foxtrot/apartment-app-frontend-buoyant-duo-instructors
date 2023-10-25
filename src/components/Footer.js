@@ -6,7 +6,7 @@ const Footer = () => {
     <>
       <Navbar className="my-2" fixed="bottom">
         <NavbarBrand href="/">
-          &copy; Cooladas Production 2023 | Lagoon Lounge
+          &copy; Buoyant Duo Production 2023 | Lagoon Lounge
         </NavbarBrand>
         <Nav className="me-auto">
           <NavItem>

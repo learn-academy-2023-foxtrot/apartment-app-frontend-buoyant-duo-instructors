@@ -41,4 +41,7 @@
 
 14. Ask for branch protections
 
-
+## Protected Pages
+- Perform conditional rendering with the user state variable as the condition to allow links and routes to be available when a user is present
+- Perform conditional rendering with the user state variable as the condition to allow links and routes to be available when a user is not present
+- ProtectedIndex: To allow a user to have access to their properties, set a condition that will only lists the apartments with a foreign key that matches the primary key of the user

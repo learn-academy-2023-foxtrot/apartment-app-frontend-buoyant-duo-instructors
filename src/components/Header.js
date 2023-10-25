@@ -1,7 +1,9 @@
 import React from "react";
 import logo from "../assets/logo.png"
 import { Navbar, NavbarBrand, Nav, NavItem, NavLink } from "reactstrap";
-const Header = () => {
+const Header = ({user}) => {
+
+  // console.log("on header: ", user)
 
   return(
     <>
@@ -27,6 +29,26 @@ const Header = () => {
               Add an Oasis
             </NavLink>
           </NavItem>
+          {user && (
+            <>
+              <NavItem>
+                <input type="button" value="Log out"/>
+              </NavItem>
+            </>
+          )}
+
+          {!user && (
+            <>
+              <NavItem>
+                <input type="button" value="Log in"/>
+              </NavItem>
+              <NavItem>
+                <NavLink href="/signup">
+                  Sign Up
+                </NavLink>
+              </NavItem>
+            </>
+          )}
         </Nav>
       </Navbar>    
    </>

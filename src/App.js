@@ -17,14 +17,14 @@ import "./App.css"
 
 const App = () => {
 
-  const [user, setUser] = useState(mockUsers[1])
+  const [user, setUser] = useState(mockUsers[0])
   const [apartments, setApartments] = useState(mockProperties)
 
   console.log(user, apartments)
 
   return(
     <>
-      <Header />
+      <Header user={user}/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signin" element={<SignIn />} />
@@ -33,7 +33,14 @@ const App = () => {
         <Route path="/aptshow" element={<AptShow />} />
         <Route path="/aptnew" element={<AptNew />} />
         <Route path="/aptedit" element={<AptEdit />} />
-        <Route path="/protectedindex" element={<ProtectedIndex />} />
+        {user && (
+          <>
+            <Route 
+              path="/protectedindex" 
+              element={<ProtectedIndex user={user} apartments={apartments} />} 
+            />
+          </>
+        )}
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
