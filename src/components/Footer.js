@@ -4,7 +4,7 @@ const Footer = () => {
 
   return(
     <>
-      <h1>Footer component</h1>
+      <p>&copy; Cooladas Production 2023 | Lagoon Lounge</p>
     </>
   )
 }

@@ -13,6 +13,7 @@ import NotFound from "./pages/NotFound";
 import { Routes, Route } from "react-router-dom";
 import mockUsers from "./mockUsers.js"
 import mockProperties from "./mockProperties.js"
+import "./App.css"
 
 const App = () => {
 
