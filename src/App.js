@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
@@ -17,10 +17,92 @@ import "./App.css"
 
 const App = () => {
 
-  const [user, setUser] = useState(mockUsers[0])
-  const [apartments, setApartments] = useState(mockProperties)
+  const [user, setUser] = useState(null)
+  const [apartments, setApartments] = useState([])
 
-  console.log(user, apartments)
+  console.log("user: ", user)
+  console.log("apartments: ", apartments)
+  
+  const url = "http://localhost:3000"
+  // console.log(user, apartments)
+
+  const readApartments = () => {
+    fetch(`${url}/apartments`)
+      .then(response => response.json())
+      .then(payload => setApartments(payload))
+      .catch(error => console.log(error))
+  }
+
+  useEffect(() => {
+    const loggedIn = localStorage.getItem("token")
+    if(loggedIn) {
+      setUser(loggedIn)
+    }
+    readApartments()
+  }, [])
+
+  // authentication methods
+const login = (userInfo) => {
+  fetch(`${url}/login`, {
+    body: JSON.stringify(userInfo),
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    },
+    method: "POST"
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw Error(response.statusText)
+    }
+    // store the token
+    localStorage.setItem("token", response.headers.get("Authorization"))
+    return response.json()
+  })
+  .then(payload => {
+    setUser(payload)
+  })
+  .catch(error => console.log("login errors: ", error))
+}
+
+const signup = (userInfo) => {
+  console.log("userInfo: ", userInfo)
+  fetch(`${url}/signup`, {
+    body: JSON.stringify(userInfo),
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    },
+    method: "POST"
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw Error(response.statusText)
+    }
+    // store the token
+    localStorage.setItem("token", response.headers.get("Authorization"))
+    return response.json()
+  })
+  .then(payload => {
+    setUser(payload)
+  })
+  .catch(error => console.log("login errors: ", error))
+}
+
+const logout = () => {
+  fetch(`${url}/logout`, {
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": localStorage.getItem("token") //retrieve the token
+    },
+    method: "DELETE"
+  })
+  .then(payload => {
+    localStorage.removeItem("token")  // remove the token
+    setUser(null)
+  })
+  .catch(error => console.log("log out errors: ", error))
+}
 
   return(
     <>
@@ -28,7 +110,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signin" element={<SignIn />} />
-        <Route path="/signup" element={<SignUp />} />
+        <Route path="/signup" element={<SignUp signup={signup} />} />
         <Route path="/aptindex" element={<AptIndex apartments={apartments} />} />
         <Route path="/aptshow/:id" element={<AptShow apartments={apartments} />} />
         <Route path="/aptnew" element={<AptNew />} />
