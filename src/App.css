@@ -22,7 +22,6 @@ p {
 
 .apartment-index-cards {
   padding: 20px;
-
 }
 
 .card-container {
@@ -38,4 +37,8 @@ p {
   padding: 20px;
   font-size: 30px;
   text-align: center;
+}
+
+.link-container {
+  margin: 0 10px;
 }

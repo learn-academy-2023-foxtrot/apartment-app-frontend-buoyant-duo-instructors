@@ -41,7 +41,24 @@
 
 14. Ask for branch protections
 
-## Protected Pages
+# Protected Pages
 - Perform conditional rendering with the user state variable as the condition to allow links and routes to be available when a user is present
 - Perform conditional rendering with the user state variable as the condition to allow links and routes to be available when a user is not present
 - ProtectedIndex: To allow a user to have access to their properties, set a condition that will only lists the apartments with a foreign key that matches the primary key of the user
+
+# Notes about routes
+- When the navigation is internally, we should use `Navlink` from react-router-dom. It allows us to maintain the current status/changes in state. The attribute that will provide the path is `to`.
+- When the navigation is externally, we should use `Navlink` from reactstrap. The attribute that will provide the path is `href`.
+
+# Testing userEvents
+Test file for App.js verifies that the navigation links are correctly changing the URL path when clicked, thereby confirming that the routing behavior in the `App` component is working as expected.
+
+- `async () => {}`: indicates that this function may contain asynchronous operations, such as awaiting a promise from HTTP requests or waiting for DOM updates.
+
+- `location.pathname`: checks the current URL path
+
+- `await`: ensures that the test won't continue until the specified asynchronous changes are complete, allowing you to make assertions based on the updated state of the application.
+
+- `userEvent.click()`: simulates a user click on the specified DOM element. A click event will be triggered on the element, which will navigate the user to another route.  
+
+

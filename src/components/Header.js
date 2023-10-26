@@ -1,8 +1,9 @@
 import React from "react";
 import logo from "../assets/logo.png"
-import { Navbar, NavbarBrand, Nav, NavItem, NavLink } from "reactstrap";
-const Header = ({user}) => {
+import { Navbar, NavbarBrand, Nav, NavItem } from "reactstrap";
+import { NavLink } from "react-router-dom";
 
+const Header = ({user}) => {
   // console.log("on header: ", user)
 
   return(
@@ -18,20 +19,21 @@ const Header = ({user}) => {
             }}
           />
         </NavbarBrand>
-        <Nav className="me-auto">
-          <NavItem>
-            <NavLink href="/aptindex">
+        <Nav>
+          <NavItem className="link-container">
+            <NavLink to="/aptindex">
               Available Oasis
             </NavLink>
           </NavItem>
-          <NavItem>
-            <NavLink href="/aptnew">
+          <NavItem className="link-container">
+            <NavLink to="/aptnew">
               Add an Oasis
             </NavLink>
           </NavItem>
+
           {user && (
             <>
-              <NavItem>
+              <NavItem className="link-container">
                 <input type="button" value="Log out"/>
               </NavItem>
             </>
@@ -39,11 +41,11 @@ const Header = ({user}) => {
 
           {!user && (
             <>
-              <NavItem>
+              <NavItem className="link-container">
                 <input type="button" value="Log in"/>
               </NavItem>
-              <NavItem>
-                <NavLink href="/signup">
+              <NavItem className="link-container">
+                <NavLink to="/signup">
                   Sign Up
                 </NavLink>
               </NavItem>
