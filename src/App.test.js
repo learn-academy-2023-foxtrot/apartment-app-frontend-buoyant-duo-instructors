@@ -11,9 +11,9 @@ describe("<App />", () => {
       </BrowserRouter>
     )
 
-    // debugging tools
+    // debugging tools: removed before asking for pull request
     // screen.debug() // displays the html in the console for that component
-    screen.logTestingPlaygroundURL() //displays a URL to open in the browser
+    // screen.logTestingPlaygroundURL() //displays a URL to open in the browser
 
     // act, utilizing a method to test what the user should be experiencing, a query
     const propLink = screen.getByRole('link', {
@@ -29,20 +29,17 @@ describe("<App />", () => {
         <App />
       </BrowserRouter>
     )
-    // console.log(location.pathname)
+    // starts on home page
     expect(location.pathname).toEqual("/")
 
-    const protectLink = screen.getByText(/my prop/i);
-    // screen.debug(protectLink)
-    // console.log(location.pathname)
+    // navigates to protected index
+    const protectLink = screen.getByText(/my prop/i)
     await userEvent.click(protectLink)
     expect(location.pathname).toEqual("/protectedindex")
-    
-    const signUpLink = screen.getByText(/join/i);
-    // screen.debug(signUpLink)
-    // console.log(location.pathname)
-    await userEvent.click(signUpLink)
-    expect(location.pathname).toEqual("/signup")
 
+    // delete button is on protected index page
+    const deleteButton = screen.getAllByText(/delete/i)
+    expect(deleteButton[0]).toBeInTheDocument()
+    expect(deleteButton[1]).toHaveTextContent("Delete this property")
   })
 })

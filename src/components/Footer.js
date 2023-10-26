@@ -2,7 +2,7 @@ import React from "react";
 import { Navbar, NavbarBrand, Nav, NavItem } from "reactstrap";
 import { NavLink } from "react-router-dom";
 
-const Footer = () => {
+const Footer = ({user}) => {
 
   return(
     <>
@@ -16,11 +16,13 @@ const Footer = () => {
               My Properties
             </NavLink>
           </NavItem>
-          <NavItem className="link-container">
-            <NavLink to="/signup">
-              Join Us
-            </NavLink>
-          </NavItem>
+          {!user && (
+            <NavItem className="link-container">
+              <NavLink to="/signup">
+                Join Us
+              </NavLink>
+            </NavItem>
+          )}
         </Nav>
       </Navbar>
     </>

@@ -29,7 +29,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/aptindex" element={<AptIndex />} />
+        <Route path="/aptindex" element={<AptIndex apartments={apartments} />} />
         <Route path="/aptshow" element={<AptShow />} />
         <Route path="/aptnew" element={<AptNew />} />
         <Route path="/aptedit" element={<AptEdit />} />
@@ -43,7 +43,7 @@ const App = () => {
         )}
         <Route path="*" element={<NotFound />} />
       </Routes>
-      <Footer />
+      <Footer user={user}/>
     </>
   )
 }

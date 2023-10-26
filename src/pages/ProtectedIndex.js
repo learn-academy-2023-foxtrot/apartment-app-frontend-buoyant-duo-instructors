@@ -5,7 +5,7 @@ import { CardGroup, Card, CardBody, CardImg, CardTitle, Button } from "reactstra
 const ProtectedIndex = ({ user, apartments }) => {
   // console.log("protected user:", user)
   const currentApts = apartments.filter(apt => apt.user_id === user.id)
-  console.log("apartments for this user: ", currentApts)
+  // console.log("apartments for this user: ", currentApts)
 
   return (
     <>
@@ -14,9 +14,13 @@ const ProtectedIndex = ({ user, apartments }) => {
         <main className="card-container">
           {currentApts?.map((apartment, index) => {
             return (
-              <Card style={{
+              <Card 
+                style={{
                   width: '18rem'
-                }} key={index} className="card-item">
+                }} 
+                key={index} 
+                className="card-item"
+              >
                 <CardImg
                   alt={`profile picture for ${apartment.street}`}
                   src={apartment.image}

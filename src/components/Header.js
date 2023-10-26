@@ -9,15 +9,17 @@ const Header = ({user}) => {
   return(
     <>
       <Navbar className="my-2">
-        <NavbarBrand href="/">
-          <img
-            alt="logo"
-            src={logo}
-            style={{
-              height: 40,
-              width: 200
-            }}
-          />
+        <NavbarBrand>
+          <NavLink to="/">
+            <img
+              alt="logo"
+              src={logo}
+              style={{
+                height: 40,
+                width: 200
+              }}
+            />
+          </NavLink>
         </NavbarBrand>
         <Nav>
           <NavItem className="link-container">

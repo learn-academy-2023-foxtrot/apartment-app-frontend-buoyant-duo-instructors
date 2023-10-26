@@ -1,37 +1,42 @@
-import React from "react";
-import { CardGroup, Card, CardBody, CardImg, CardTitle, CardSubtitle, CardText, Button } from "reactstrap";
-const AptIndex = () => {
+import React from "react"
+import { NavLink } from "react-router-dom"
+import { Card, CardBody, CardImg, CardTitle, Button } from "reactstrap";
 
-  return(
+const AptIndex = ({ apartments }) => {
+  return (
     <>
-      <h1>Available Oasis</h1>
-      <CardGroup>
-        <Card>
-          <CardImg
-            alt="Card image cap"
-            src="https://picsum.photos/318/180"
-            top
-            width="100%"
-          />
-          <CardBody>
-            <CardTitle tag="h5">
-              Card title
-            </CardTitle>
-            <CardSubtitle
-              className="mb-2 text-muted"
-              tag="h6"
-            >
-              Card subtitle
-            </CardSubtitle>
-            <CardText>
-              This card has supporting text below as a natural lead-in to additional content.
-            </CardText>
-            <Button>
-              Button
-            </Button>
-          </CardBody>
-        </Card>
-      </CardGroup>
+      <h2>Select an available oasis today!</h2>
+      <div className="center-image">
+        <main className="card-container">
+          {apartments?.map((apartment, index) => {
+            return (
+              <Card 
+                style={{
+                  width: '18rem'
+                }} 
+                key={index} 
+                className="card-item"
+              >
+                <CardImg
+                  alt={`profile picture for ${apartment.street}`}
+                  src={apartment.image}
+                />
+                <CardBody>
+                  <CardTitle tag="h5">
+                    {`${apartment.bedrooms} beds and ${apartment.bedrooms} bathrooms in ${apartment.state}`}
+                  </CardTitle>
+                  <Button>
+                    <NavLink to={`/aptshow/${apartment.id}`} className="nav-link">
+                      See more details
+                    </NavLink>
+                  </Button>
+                </CardBody>
+              </Card>
+            )
+          })}
+          <br />
+        </main>
+      </div>
     </>
   )
 }
