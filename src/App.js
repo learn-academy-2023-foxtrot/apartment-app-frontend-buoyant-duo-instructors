@@ -30,7 +30,7 @@ const App = () => {
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/aptindex" element={<AptIndex apartments={apartments} />} />
-        <Route path="/aptshow" element={<AptShow />} />
+        <Route path="/aptshow/:id" element={<AptShow apartments={apartments} />} />
         <Route path="/aptnew" element={<AptNew />} />
         <Route path="/aptedit" element={<AptEdit />} />
         {user && (

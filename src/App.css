@@ -32,6 +32,13 @@ p {
   margin: 0 auto
 }
 
+.show-card-container {
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  padding: 20px;
+}
+
 .card-item {
   border-radius: 5px;
   padding: 20px;
@@ -41,4 +48,8 @@ p {
 
 .link-container {
   margin: 0 10px;
+}
+
+.card {
+  margin: auto;
 }

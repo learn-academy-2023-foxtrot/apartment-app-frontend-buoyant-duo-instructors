@@ -35,7 +35,7 @@ const ProtectedIndex = ({ user, apartments }) => {
                     </NavLink>
                   </Button>
                   <Button>
-                    <NavLink to={`/aptedit/${apartment.id}`} className="nav-link">
+                    <NavLink to={"/aptedit"} className="nav-link">
                       Update this property
                     </NavLink>
                   </Button>
