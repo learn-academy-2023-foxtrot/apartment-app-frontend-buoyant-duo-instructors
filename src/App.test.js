@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom'
 import App from './App'
 
 describe("<App />", () => {
-  it("renders a greeting to the Flow Master space", () => {
+  it("renders a link to the protected index", () => {
     render(
       <BrowserRouter>
         <App />

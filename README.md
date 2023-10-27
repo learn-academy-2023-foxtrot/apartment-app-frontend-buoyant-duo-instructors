@@ -105,7 +105,7 @@ Test file for App.js verifies that the navigation links are correctly changing t
 ## Icebox
 - {} for imports: when and why
 ### Answer
-- {} are designated for named modules or components. Named exports are used when a library offers multiple features or components that can be imported selectively, for example UI components from reactstrap and Routing components from react-router-dom.
+- {} are designated for named exports from modules or components. Named exports are used when a library offers multiple features or components that can be imported selectively, for example UI components from reactstrap and Routing components from react-router-dom.
 - {} are not required for default exports. Default exports are suitable when a library provides a single primary component or function, for example the files for each React component and the mock data files.
 
 ## Blocker
@@ -122,14 +122,8 @@ Test file for App.js verifies that the navigation links are correctly changing t
   })
 
 // modify the logout fetch request to remove the currentUser and set user to null
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": localStorage.getItem("currentUser") //retrieve the currentUser
-    },
-    method: "DELETE"
-  })
   .then(payload => {
-    // localStorage.removeItem("token")  // remove the token
+    localStorage.removeItem("token")  // remove the token
     localStorage.removeItem("currentUser")  // remove the currentUser
     setUser(null)
   })
@@ -141,5 +135,6 @@ Test file for App.js verifies that the navigation links are correctly changing t
   }
 ```
 
+***NOTE: If the token is still appearing, do a `Empty Cache and Hard Reload` by right clicking the refresh button in the browser. You will need your console open to access these additional options.***
 
 
