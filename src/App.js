@@ -21,7 +21,7 @@ const App = () => {
   const [apartments, setApartments] = useState([])
 
   console.log("user: ", user)
-  console.log("apartments: ", apartments)
+  // console.log("apartments: ", apartments)
   
   const url = "http://localhost:3000"
   // console.log(user, apartments)
@@ -34,9 +34,9 @@ const App = () => {
   }
 
   useEffect(() => {
-    const loggedIn = localStorage.getItem("token")
+    const loggedIn = localStorage.getItem("currentUser")
     if(loggedIn) {
-      setUser(loggedIn)
+      setUser(JSON.parse(loggedIn))
     }
     readApartments()
   }, [])
@@ -60,6 +60,7 @@ const login = (userInfo) => {
     return response.json()
   })
   .then(payload => {
+    localStorage.setItem("currentUser", JSON.stringify(payload))
     setUser(payload)
   })
   .catch(error => console.log("login errors: ", error))
@@ -84,6 +85,7 @@ const signup = (userInfo) => {
     return response.json()
   })
   .then(payload => {
+    localStorage.setItem("currentUser", JSON.stringify(payload))
     setUser(payload)
   })
   .catch(error => console.log("login errors: ", error))
@@ -99,6 +101,7 @@ const logout = () => {
   })
   .then(payload => {
     localStorage.removeItem("token")  // remove the token
+    localStorage.removeItem("currentUser")  // remove the currentUser
     setUser(null)
   })
   .catch(error => console.log("log out errors: ", error))
@@ -106,10 +109,10 @@ const logout = () => {
 
   return(
     <>
-      <Header user={user}/>
+      <Header user={user} logout={logout} login={login}/>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/signin" element={<SignIn />} />
+        <Route path="/signin" element={<SignIn login={login} />} />
         <Route path="/signup" element={<SignUp signup={signup} />} />
         <Route path="/aptindex" element={<AptIndex apartments={apartments} />} />
         <Route path="/aptshow/:id" element={<AptShow apartments={apartments} />} />

@@ -91,11 +91,55 @@ Test file for App.js verifies that the navigation links are correctly changing t
 
   - `const userInfo = { "user": { email: data.email, password: data.password } }`: creates an object named `userInfo` by placing the user's information in a format that can be used with JSON Web Tokens (JWT) for authentication. The values for these properties are obtained from the `data` object.
 
+  - `e.target.reset()`: reset the form that triggered the submission. The reset() method is a built-in function that clears the input fields.
+
 5. Fetch requests for the applicable session
 
 6. Pass that request as a prop to the applicable component
+  - Header.js - logout ***NOTE: onClick attribute will be added to the input tag that has the logout value***
+  - SignIn.js - signin
+  - SignUp.js - signup
 
 7. Create a function that allows a persistent user while still logged in
 
 ## Icebox
 - {} for imports: when and why
+### Answer
+- {} are designated for named modules or components. Named exports are used when a library offers multiple features or components that can be imported selectively, for example UI components from reactstrap and Routing components from react-router-dom.
+- {} are not required for default exports. Default exports are suitable when a library provides a single primary component or function, for example the files for each React component and the mock data files.
+
+## Blocker
+- cannot access protected index with setting token as value when the browser is refreshed for a user
+### Solution
+- store the payload that contains the user login info into local storage
+- retrieve the local storage
+- set the payload as the value for the user when the screen is refreshed while the user is still logged in
+```js
+// modify the login and signup fetch request to store the payload as currentUser
+  .then(payload => {
+    localStorage.setItem("currentUser", JSON.stringify(payload))
+    setUser(payload)
+  })
+
+// modify the logout fetch request to remove the currentUser and set user to null
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": localStorage.getItem("currentUser") //retrieve the currentUser
+    },
+    method: "DELETE"
+  })
+  .then(payload => {
+    // localStorage.removeItem("token")  // remove the token
+    localStorage.removeItem("currentUser")  // remove the currentUser
+    setUser(null)
+  })
+
+// set the user to the currentUser when the page is refreshed by the useEffect() function
+  const loggedIn = localStorage.getItem("currentUser")
+  if(loggedIn) {
+    setUser(JSON.parse(loggedIn))
+  }
+```
+
+
+

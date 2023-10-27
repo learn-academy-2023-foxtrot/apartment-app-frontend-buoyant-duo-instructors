@@ -11,11 +11,13 @@ const Footer = ({user}) => {
           &copy; Buoyant Duo Production 2023 | Lagoon Lounge
         </NavbarBrand>
         <Nav className="me-auto">
-          <NavItem className="link-container">
-            <NavLink to="/protectedindex">
-              My Properties
-            </NavLink>
-          </NavItem>
+          {user && (
+            <NavItem className="link-container">
+              <NavLink to="/protectedindex">
+                My Properties
+              </NavLink>
+            </NavItem>
+          )}
           {!user && (
             <NavItem className="link-container">
               <NavLink to="/signup">

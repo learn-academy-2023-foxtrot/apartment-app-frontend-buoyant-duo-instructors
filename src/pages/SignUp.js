@@ -33,7 +33,7 @@ const SignUp = ({signup}) => {
         <input type="submit" value="Submit" />
       </form>
       <br />
-      <div>Already registered, <a href="/login">Login</a> here.</div>
+      <div>Already registered, <a href="/signin">Login</a> here.</div>
     </div>
   )
 }
